@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Procedure(table_to_use text, arguments json)
+CREATE OR REPLACE PROCEDURE Update_Procedure(table_to_use text, columns_to_update json, arguments json)
 LANGUAGE plpgsql
 AS $$
 BEGIN
