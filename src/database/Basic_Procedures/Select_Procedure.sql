@@ -2,7 +2,6 @@ CREATE OR REPLACE PROCEDURE Select_Procedure(table_to_use text)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-SELECT * FROM $1
     CASE $1 
             WHEN 'restaurantes' THEN
                 SELECT * FROM restaurantes;
