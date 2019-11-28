@@ -67,7 +67,8 @@
 -- TABELA Datas
 	CREATE TABLE DATAS(
 		cod_data BIGSERIAL PRIMARY KEY NOT NULL,
-		hora_dia DATA TIME NOT NULL
+		dia DATE NOT NULL,
+		hora TIME NOT NULL
 	);
 
 -- TABELA Items_Ementas
