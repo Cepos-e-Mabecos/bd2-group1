@@ -3,9 +3,9 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
 
-    -- Insert into table items
-    INSERT INTO items SELECT cod_tipo_item,designacao,custo FROM json_populate_record(
-        NULL::items,
+    -- Insert into table Items
+    INSERT INTO Items SELECT cod_item_type,designation,cost FROM json_populate_record(
+        NULL::Items,
         $1 
     );
 

@@ -1,0 +1,3 @@
+CREATE OR REPLACE VIEW Select_Locals
+AS
+SELECT * FROM Locals
