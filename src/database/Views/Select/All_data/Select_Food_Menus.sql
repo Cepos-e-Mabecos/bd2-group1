@@ -1,0 +1,3 @@
+CREATE OR REPLACE VIEW Select_Food_Menus
+AS
+SELECT * FROM Food_Menus
