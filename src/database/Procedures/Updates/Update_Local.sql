@@ -4,17 +4,17 @@ AS $$
 BEGIN
 
     -- GET JSON DATA
-    WITH source AS (SELECT cod_tipo_local,designacao FROM json_populate_record(
-        NULL::locais,
+    WITH source AS (SELECT cod_local_type,designation FROM json_populate_record(
+        NULL::Locals,
         $2
     ))
 
-    -- UPDATE TABLE locais
-    UPDATE locais SET 
-        cod_tipo_local = s.cod_tipo_local,
-        designacao = s.designacao
+    -- UPDATE TABLE Locals
+    UPDATE Locals SET 
+        cod_local_type = s.cod_local_type,
+        designation = s.designation
     FROM source AS s
-    WHERE locais.cod_local = temp_cod_local;
+    WHERE cod_local = temp_cod_local;
 
 END
 $$
