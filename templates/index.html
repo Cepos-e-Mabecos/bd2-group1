@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/index.css') }}">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Hello World!</h1>
+    <div class="container">
+        <div class="navbar">
+            Restaurant Web Application
+        </div>
+        <div class="sidebar">
+            <div class="element">Create</div>
+            <div class="element">Read</div>
+            <div class="element">Update</div>
+            <div class="element">Delete</div>
+        </div>
+        <div class="content">
+            <div class="content-element">
+                Restaurants
+            </div>
+            Restaurants 
+            Clients
+            Comsumptions
+            Locals
+            Allergies
+        </div>
+    </div>
+
 </body>
+
 </html>
