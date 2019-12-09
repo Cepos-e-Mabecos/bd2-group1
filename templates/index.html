@@ -4,34 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="text/html" content="ie=edge">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/index.css') }}">
-    <title>Document</title>
+    <title>Restaurant API</title>
 </head>
 
 <body>
     <div class="container">
         <div class="navbar">
-            Restaurant Web Application
+            <a href=".">Restaurant Web Application</a>
         </div>
         <div class="sidebar">
             <div class="element">Create</div>
-            <div class="element">Read</div>
+            <div class="element" id="read-button">Read</div>
             <div class="element">Update</div>
             <div class="element">Delete</div>
         </div>
-        <div class="content">
+        <div class="content" id="content-main">
+            <h1 id="title">Welcome to Restaurant API</h1>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/spaghetti.svg') }}" alt="" id="image">
+            </div>
+        <p id="first">To Execute some action select one of the option in lhe left bar</p>
+            
+        </div>
+        <div class="content" id="content-read">
             <div class="content-element">
                 Restaurants
             </div>
-            Restaurants 
-            Clients
-            Comsumptions
-            Locals
-            Allergies
+            <div class="content-element">
+                Clients
+            </div>
+            <div class="content-element">
+                Comsumptions
+            </div>
+            <div class="content-element">
+                Locals
+            </div>
+            <div class="content-element">
+                Allergies
+            </div>
+
         </div>
     </div>
-
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 </body>
 
 </html>

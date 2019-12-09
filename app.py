@@ -47,13 +47,18 @@ app.register_blueprint(local_type, url_prefix="/src.api/local-type")
 # Test Route
 @app.route('/', methods=['GET'])
 def hello_world():
-    return jsonify({
-        'Name': 'Edwin!',
-        'Age': '23',
-        'City': 'Viseu'
-    })
+    return render_template("index.html")
 
+@app.route('/api/restaurant', methods=['GET'])
+def api_restaurant():
+    return jsonify([{'name':'Restaurante da Tua Tia', 'location':'Em casa'},{'name':'Restaurante da Teu Tio', 'location':'Na Rua'}])
 
+@app.route('/restaurant')
+def restaurant():
+    teste = api_restaurant()
+    print(teste)
+    return render_template("restaurant.html", teste=teste)
+    
 # Run Server
 if __name__ == '__main__':
     app.run(debug=True)
