@@ -24,29 +24,29 @@ from comsumption_locals_restaurants import comsumption_local_restaurant
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 # Register Blueprints
-app.register_blueprint(allergy)
-app.register_blueprint(allergy_item)
-app.register_blueprint(client)
-app.register_blueprint(comsumption)
-app.register_blueprint(comsumption_local_employee)
-app.register_blueprint(comsumption_local_restaurant)
-app.register_blueprint(date)
-app.register_blueprint(food_menu)
-app.register_blueprint(employee)
-app.register_blueprint(item)
-app.register_blueprint(food_menu_item)
-app.register_blueprint(local)
-app.register_blueprint(comsumption_local)
-app.register_blueprint(restaurant)
-app.register_blueprint(food_menu_type)
-app.register_blueprint(item_type)
-app.register_blueprint(local_type)
+app.register_blueprint(allergy, url_prefix="/allergy")
+app.register_blueprint(allergy_item, url_prefix="/allergy-item")
+app.register_blueprint(client, url_prefix="/client")
+app.register_blueprint(comsumption, url_prefix="/comsumption")
+app.register_blueprint(comsumption_local_employee,url_prefix="/comsumption-local-employee")
+app.register_blueprint(comsumption_local_restaurant,url_prefix="/comsumption-local-restaurant")
+app.register_blueprint(date, url_prefix="/date")
+app.register_blueprint(food_menu, url_prefix="/food-menu")
+app.register_blueprint(employee, url_prefix="/employee")
+app.register_blueprint(item, url_prefix="/item")
+app.register_blueprint(food_menu_item, url_prefix="/food-menu-item")
+app.register_blueprint(local, url_prefix="/local")
+app.register_blueprint(comsumption_local, url_prefix="/comsumption-local")
+app.register_blueprint(restaurant, url_prefix="/restaurant")
+app.register_blueprint(food_menu_type, url_prefix="/food-menu-type")
+app.register_blueprint(item_type, url_prefix="/item-type")
+app.register_blueprint(local_type, url_prefix="/local-type")
 
 
-@app.route('/restaurant', methods=['GET'])
-def api_restaurant():
-    return jsonify([{'name':'Restaurante da Tua Tia', 'location':'Em casa'},{'name':'Restaurante da Teu Tio', 'location':'Na Rua'}])
-    
+##@app.route('/restaurant', methods=['GET'])
+##def api_restaurant():
+##    return jsonify([{'name':'Restaurante da Tua Tia', 'location':'Em casa'},{'name':'Restaurante da Teu Tio', 'location':'Na Rua'}])
+   
 # Run Server
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
