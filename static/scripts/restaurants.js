@@ -1,6 +1,6 @@
 const apiRequest = () => {
     const getRestaurants = async () => {
-        const response = await fetch('http://localhost:5000/api/restaurant');
+        const response = await fetch('http://localhost:5001/restaurant');
         const data = await response.json();
         let innerHTML = ' ';
         
@@ -12,7 +12,7 @@ const apiRequest = () => {
         });
         /* pass the data from the file to the UI */
         document.querySelector('.teste-container').innerHTML = innerHTML;
-    }
+    };
     return {
         getRestaurants: getRestaurants
     }
