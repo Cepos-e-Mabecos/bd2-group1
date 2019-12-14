@@ -2,120 +2,112 @@
 
 -- TABLE Local_Types
 	CREATE TABLE Local_Types(
-		cod_local_type BIGSERIAL PRIMARY KEY NOT NULL,
-		designation CHARACTER(50) NOT NULL
+		local_type_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		designation TEXT NOT NULL
 	);
 
 -- TABLE Locals
 	CREATE TABLE Locals(
-		cod_local BIGSERIAL PRIMARY KEY NOT NULL,
-		cod_local_type BIGSERIAL NOT NULL REFERENCES Local_Types(cod_local_type),
-		designation CHARACTER(50) NOT NULL
+		local_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		local_type_cod BIGSERIAL NOT NULL REFERENCES Local_Types(local_type_cod),
+		designation TEXT NOT NULL
 	);
 
 -- TABLE Restaurants
-	CREATE TABLE Restaurants(
-		cod_restaurant BIGSERIAL PRIMARY KEY NOT NULL,
-		cod_local BIGSERIAL NOT NULL REFERENCES Locals(cod_local),
-		designation CHARACTER(50) NOT NULL
+	CREATE OR REPLACE TABLE Restaurants(
+		restaurant_cod VARCHAR() PRIMARY KEY NOT NULL,
+		local_cod BIGSERIAL NOT NULL REFERENCES Locals(local_cod),
+		designation TEXT NOT NULL	
 	);
 
--- TABLE Comsumption_Locals
-	CREATE TABLE Comsumption_Locals(
-		cod_comsumption_local BIGSERIAL PRIMARY KEY NOT NULL,
-		designation CHARACTER(50) NOT NULL,
-		cupon VARCHAR(50)
-	);
-
--- TABLE Consumption_Locals_Restaurants
-	CREATE TABLE Consumption_Locals_Restaurants(
-		cod_restaurant BIGSERIAL NOT NULL REFERENCES Restaurants(cod_restaurant),
-		cod_comsumption_local BIGSERIAL NOT NULL REFERENCES Comsumption_Locals(cod_comsumption_local),
-		PRIMARY KEY(cod_restaurant,cod_comsumption_local)
+-- TABLE zones
+	CREATE TABLE zones(
+		zone_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		restaurant_cod BIGSERIAL NOT NULL REFERENCES Restaurants(restaurant_cod),
+		employee_cod BIGSERIAL NOT NULL REFERENCES Employees(employee_cod),
+		designation TEXT NOT NULL,
 	);
 
 -- TABLE Employees
 	CREATE TABLE Employees(
-		cod_employee BIGSERIAL PRIMARY KEY NOT NULL,
-		first_name CHARACTER(25) NOT NULL,
-		last_name CHARACTER(50) NOT NULL
+		employee_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		first_name TEXT NOT NULL,
+		last_name TEXT NOT NULL,
+		contact INT NOT NULL
 	);
 
--- TABLE Comsumption_Locals_Employees 
-	CREATE TABLE Comsumption_Locals_Employees(
-		cod_employee BIGSERIAL NOT NULL REFERENCES Employees(cod_employee),
-		cod_comsumption_local BIGSERIAL NOT NULL REFERENCES Comsumption_Locals(cod_comsumption_local),
-		comsumption_locals_employee_date TIMESTAMP NOT NULL,
-		PRIMARY KEY(cod_employee,cod_comsumption_local)
+-- TABLE Items_Type
+	CREATE TABLE Items_Type(
+		item_type_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		designation TEXT NOT NULL
 	);
-	-- TABLE Clients
-	CREATE TABLE Clients(
-		cod_client BIGSERIAL PRIMARY KEY NOT NULL,
-		first_name CHARACTER(25) NOT NULL,
-		last_name CHARACTER(50) NOT NULL,
-		nif VARCHAR(50) NOT NULL
-	);
-	-- TABLE Food_Menu_Types
-	CREATE TABLE Food_Menu_Types(
-		cod_food_menu_type BIGSERIAL PRIMARY KEY NOT NULL,
-		designation CHARACTER(50) NOT NULL
-	);
--- TABLE Dates
-	CREATE TABLE Dates(
-		cod_date BIGSERIAL PRIMARY KEY NOT NULL,
-		date_time TIMESTAMP NOT NULL
-	);
--- TABLE Food_Menus
-CREATE TABLE Food_Menus(
-	cod_food_menu BIGSERIAL PRIMARY KEY NOT NULL,
-	cod_food_menu_type BIGSERIAL NOT NULL REFERENCES Food_Menu_Types(cod_food_menu_type),
-	cod_restaurant BIGSERIAL NOT NULL REFERENCES Restaurants(cod_restaurant),
-	cod_date BIGSERIAL NOT NULL REFERENCES Dates(cod_date)
-);
--- TABLE Comsumptions
-	CREATE TABLE Comsumptions(
-		cod_comsumption BIGSERIAL PRIMARY KEY NOT NULL,
-		cod_client BIGSERIAL NOT NULL REFERENCES Clients(cod_client),
-		cod_food_menu  BIGSERIAL NOT NULL REFERENCES Food_Menus(cod_food_menu),
-		cod_employee BIGSERIAL NOT NULL REFERENCES Employees(cod_employee),
-		comsumption_date TIMESTAMP NOT NULL
-	);
-
-
--- TABLE Item_Types
-	CREATE TABLE Item_Types(
-		cod_item_type BIGSERIAL PRIMARY KEY NOT NULL,
-		designation CHARACTER(50) NOT NULL
-	);
-
-
 
 -- TABLE Items
 	CREATE TABLE Items(
-		cod_item BIGSERIAL PRIMARY KEY NOT NULL,
-		cod_item_type BIGSERIAL NOT NULL REFERENCES Item_Types(cod_item_type),
-		designation CHARACTER(50) NOT NULL,
-		cost DECIMAL NOT NULL
+		item_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		item_type_cod BIGSERIAL NOT NULL REFERENCES Items_Type(item_type_cod),
+		price MONEY NOT NULL
 	);
 
--- TABLE Food_Menu_Items
-	CREATE TABLE Food_Menu_Items(
-		cod_item BIGSERIAL NOT NULL REFERENCES ITEMS(cod_item),
-		cod_food_menu BIGSERIAL NOT NULL REFERENCES Food_Menus(cod_food_menu),
-		PRIMARY KEY(cod_item,cod_food_menu)
+-- TABLE Menus_Type
+	CREATE TABLE Menus_Type(
+		menu_type_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		designation TEXT NOT NULL
 	);
-	
 
+-- TABLE Menus
+	CREATE TABLE Menus(
+		menu_cod BIGSERIAL PRIMARY KEY NOT NULL,
+		designation TEXT NOT NULL
+	);
+
+-- TABLE Menu_Items
+	CREATE TABLE Menu_Items(
+		menu_cod BIGSERIAL NOT NULL REFERENCES Menus(menu_cod),
+		item_cod BIGSERIAL NOT NULL REFERENCES Items(item_cod)
+	);
+
+-- TABLE Zone_Menus
+	CREATE TABLE Zone_Menus(
+		zone_cod BIGSERIAL NOT NULL REFERENCES zones(zone_cod),
+		menu_cod BIGSERIAL NOT NULL REFERENCES Menus(menu_cod)
+	);
+
+-- TABLE Eating_Zone_Employees
+	CREATE TABLE Zone_Employees(
+		zone_cod BIGSERIAL NOT NULL REFERENCES zones(zone_cod),
+		employee_cod BIGSERIAL NOT NULL REFERENCES Employees(employee_cod)
+	);
+
+-- TABLE Clients
+	CREATE TABLE Clients(
+		cod_client BIGSERIAL PRIMARY KEY NOT NULL,
+		first_name TEXT NOT NULL,
+		last_name TEXT NOT NULL,
+		nif VARCHAR(50) NOT NULL
+	);
+
+-- TABLE Comsumptions
+	CREATE TABLE Comsumptions(
+		comsumption_cod BIGSERIAL NOT NULL PRIMARY KEY,
+		cod_client BIGSERIAL NOT NULL REFERENCES Clients(cod_client),
+		comsumption_date TIMESTAMP NOT NULL
+	)
+
+-- TABLE zone_Comsumptions
+	CREATE TABLE zone_Comsumptions(
+		zone_cod BIGSERIAL NOT NULL REFERENCES zones(zone_cod),
+		comsumption_cod BIGSERIAL NOT NULL REFERENCES Comsumptions(comsumption_cod)
+	)
 
 -- TABLE Allergies
-	CREATE TABLE Allergy(
-		cod_allergy BIGSERIAL PRIMARY KEY NOT NULL,
+	CREATE TABLE Allergies(
+		allergy_cod BIGSERIAL NOT NULL PRIMARY KEY,
 		symptom TEXT NOT NULL
-	);
-	
--- TABLE Allergy_Items
-	CREATE TABLE Allergy_Items(
-		cod_item BIGSERIAL NOT NULL REFERENCES Items(cod_item),
-		cod_allergy BIGSERIAL NOT NULL REFERENCES Allergy(cod_allergy),
-		PRIMARY KEY(cod_allergy,cod_item)
-	);
+	)
+
+-- TABLE Item_Allergies
+	CREATE TABLE Item_Allergies(
+		allergy_cod BIGSERIAL NOT NULL REFERENCES Allergies(allergy_cod),
+		item_cod BIGSERIAL NOT NULL REFERENCES Items(item_cod)
+	)

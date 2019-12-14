@@ -1,0 +1,3 @@
+CREATE OR REPLACE VIEW Select_Clients
+AS
+SELECT * FROM Clients
