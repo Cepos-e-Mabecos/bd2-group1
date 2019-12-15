@@ -10,16 +10,16 @@ from config import create_connection, commit_destroy_connection, psycopg2
 from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
 
 # Define Blueprint
-restaurant = Blueprint('restaurant', __name__)
+local = Blueprint('local', __name__)
 
 definers = [
-    path.basename(__file__)[0:11],
-    path.basename(__file__)[0:10]
+    path.basename(__file__)[0:6],
+    path.basename(__file__)[0:5]
 ]
 
-# Get restaurants
-@restaurant.route('/', methods=['GET'])
-def get_restaurants():
+# Get locals
+@local.route('/', methods=['GET'])
+def get_locals():
     # Declaration of a List of Records
     list_records = []
 
@@ -42,9 +42,9 @@ def get_restaurants():
         # Will store everysingle record in a list formated with a certain format
         for record in database_records:
             dictionary_row = {
-                "Restaurant_Cod": record[0],
-                "Restaurant_Local": record[1],
-                "Restaurant_Designation": record[2]
+                "Local_Cod": record[0],
+                "Local_Type": record[1],
+                "Local_Designation": record[2]
             }
             list_records.append(dictionary_row)
 
@@ -70,9 +70,9 @@ def get_restaurants():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Get restaurant
-@restaurant.route('/<cod_restaurant>', methods=['GET'])
-def get_restaurant(cod_restaurant):
+# Get local
+@local.route('/<cod_local>', methods=['GET'])
+def get_local(cod_local):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -80,12 +80,14 @@ def get_restaurant(cod_restaurant):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{GET_SINGLE(definers[1],cod_restaurant)}")
+            f"{GET_SINGLE(definers[1],cod_local)}")
 
         cur.execute(encoded_command)
 
         # Fetching all the records from the cursor
         database_record = cur.fetchall()
+
+        print(database_record)
 
         # Returning the records complete list
         return {
@@ -110,9 +112,9 @@ def get_restaurant(cod_restaurant):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Post restaurant
-@restaurant.route('/', methods=['POST'])
-def post_restaurant():
+# Post local
+@local.route('/', methods=['POST'])
+def post_local():
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -154,9 +156,9 @@ def post_restaurant():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Put restaurant
-@restaurant.route('/<cod_restaurant>', methods=['PUT'])
-def put_restaurant(cod_restaurant):
+# Put local
+@local.route('/<cod_local>', methods=['PUT'])
+def put_local(cod_local):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -170,7 +172,7 @@ def put_restaurant(cod_restaurant):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{UPDATE(definers[1], cod_restaurant, data_json)}")
+            f"{UPDATE(definers[1], cod_local, data_json)}")
 
         print(encoded_command)
 
@@ -198,9 +200,9 @@ def put_restaurant(cod_restaurant):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Delete restaurant
-@restaurant.route('/<cod_restaurant>', methods=['DELETE'])
-def delete_restaurant(cod_restaurant):
+# Delete local
+@local.route('/<cod_local>', methods=['DELETE'])
+def delete_local(cod_local):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -208,7 +210,7 @@ def delete_restaurant(cod_restaurant):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{DELETE(definers[1],cod_restaurant)}")
+            f"{DELETE(definers[1],cod_local)}")
 
         cur.execute(encoded_command)
 

@@ -1,3 +1,0 @@
-CREATE OR REPLACE VIEW Select_Comsumption_Locals_Employees
-AS
-SELECT * FROM Comsumption_Locals_Employees

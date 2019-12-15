@@ -1,3 +1,0 @@
-CREATE OR REPLACE VIEW Select_Allergies
-AS
-SELECT * FROM Allergies

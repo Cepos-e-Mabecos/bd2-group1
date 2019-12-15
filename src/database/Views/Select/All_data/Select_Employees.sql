@@ -1,3 +1,0 @@
-CREATE OR REPLACE VIEW Select_Employees
-AS
-SELECT * FROM Employees
