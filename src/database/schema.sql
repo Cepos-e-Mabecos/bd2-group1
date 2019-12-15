@@ -34,10 +34,9 @@
 
 -- TABLE Employees
 	CREATE TABLE Employees(
-		employee_cod VARCHAR() PRIMARY KEY NOT NULL,
+		employee_cod VARCHAR PRIMARY KEY NOT NULL,
 		first_name TEXT NOT NULL,
-		last_name TEXT NOT NULL,
-		contact INT NOT NULL
+		last_name TEXT NOT NULL
 	);
 
 -- TABLE Items_Type

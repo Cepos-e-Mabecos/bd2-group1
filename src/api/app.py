@@ -4,7 +4,7 @@ from flask_cors import CORS
 from restaurants import restaurant
 from locals import local
 from local_types import local_type
-
+from employees import employee
 
 # Init App
 app = Flask(__name__)
@@ -13,6 +13,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(restaurant, url_prefix="/restaurant")
 app.register_blueprint(local, url_prefix="/local")
 app.register_blueprint(local_type, url_prefix="/local_type")
+app.register_blueprint(employee, url_prefix="/employee")
 
 
 # @app.route('/restaurant', methods=['GET'])
