@@ -1,3 +1,0 @@
-CREATE OR REPLACE VIEW Select_Dates
-AS
-SELECT * FROM Dates

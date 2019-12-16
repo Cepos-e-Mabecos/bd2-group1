@@ -1,20 +1,22 @@
-CREATE OR REPLACE PROCEDURE Update_Restaurant(temp_cod_restaurant int, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Restaurant(temp_cod_restaurant VARCHAR, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN
 
-    -- GET JSON DATA
-    WITH source AS (SELECT cod_local,designation FROM json_populate_record(
-        NULL::Restaurants,
-        $2
-    ))
-
-    -- UPDATE TABLE Restaurants
-    UPDATE Restaurants SET 
-        cod_local = s.cod_local,
-        designation = s.designation
-    FROM source AS s
-    WHERE cod_restaurant = temp_cod_restaurant;
-
+	IF(select exists(select 1 From Restaurants where Restaurants.restaurant_cod = temp_cod_restaurant)) THEN
+		-- GET JSON DATA
+		WITH source AS (SELECT local_cod,designation FROM json_populate_record(
+			NULL::Restaurants,
+			$2
+		))
+		
+		UPDATE Restaurants SET 
+			local_cod = s.local_cod,
+			designation = s.designation
+		FROM source as s
+		WHERE restaurant_cod = temp_cod_restaurant;
+	ELSE
+		RAISE 'There is no Restaurant with that Cod!';
+	END IF;
 END
 $$
