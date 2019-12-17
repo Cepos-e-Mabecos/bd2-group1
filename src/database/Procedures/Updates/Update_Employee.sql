@@ -5,13 +5,12 @@ BEGIN
 
 	IF(select exists(select 1 From employees where employees.employee_cod = temp_cod_employee)) THEN
 		-- GET JSON DATA
-		WITH source AS (SELECT employee_cod,first_name, last_name FROM json_populate_record(
+		WITH source AS (SELECT first_name, last_name FROM json_populate_record(
 			NULL::employees,
 			$2
 		))
 		
 		UPDATE employees SET 
-			employee_cod = s.employee_cod,
             first_name = s.first_name, 
             last_name = s.last_name
 		FROM source as s

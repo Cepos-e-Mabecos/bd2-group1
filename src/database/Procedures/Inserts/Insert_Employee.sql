@@ -3,12 +3,12 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
 		-- GET JSON DATA
-		WITH source AS (SELECT employees.first_name, employees.last_name FROM json_populate_record(
+		WITH source AS (SELECT first_name, last_name FROM json_populate_record(
 			NULL::employees,
 			$1
 		))
 		
-		INSERT INTO employees (employees.first_name, employees.last_name) SELECT employees.first_name, employees.last_name FROM json_populate_record(
+		INSERT INTO employees (first_name, last_name) SELECT first_name, last_name FROM json_populate_record(
 			NULL::employees,
 			$1 
 		);

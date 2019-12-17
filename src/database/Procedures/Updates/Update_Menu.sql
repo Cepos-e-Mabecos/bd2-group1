@@ -5,7 +5,7 @@ BEGIN
 
 	IF(select exists(select 1 From menus where menus.menu_cod = temp_cod_menu)) THEN
 		-- GET JSON DATA
-		WITH source AS (SELECT menu_cod,menu_type_cod,designation FROM json_populate_record(
+		WITH source AS (SELECT menu_type_cod,designation FROM json_populate_record(
 			NULL::menus,
 			$2
 		))

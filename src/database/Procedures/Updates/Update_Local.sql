@@ -5,7 +5,7 @@ BEGIN
 
 	IF(select exists(select 1 From Locals where Locals.Local_cod = temp_cod_local)) THEN
 		-- GET JSON DATA
-		WITH source AS (SELECT local_cod,local_type_cod,designation FROM json_populate_record(
+		WITH source AS (SELECT local_type_cod,designation FROM json_populate_record(
 			NULL::Locals,
 			$2
 		))

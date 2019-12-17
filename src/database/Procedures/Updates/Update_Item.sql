@@ -5,7 +5,7 @@ BEGIN
 
     IF(select exists(select 1 From items where items.item_cod = temp_cod_item)) THEN
         -- GET JSON DATA
-        WITH source AS (SELECT item_cod,item_type_cod,designation,price FROM json_populate_record(
+        WITH source AS (SELECT item_type_cod,designation,price FROM json_populate_record(
             NULL::items,
             $2
         ))

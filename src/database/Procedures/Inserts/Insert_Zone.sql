@@ -3,7 +3,7 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
 		-- GET JSON DATA
-		WITH source AS (SELECT zone_cod,restaurant_cod,employee_cod,designation FROM json_populate_record(
+		WITH source AS (SELECT restaurant_cod,employee_cod,designation FROM json_populate_record(
 			NULL::zones,
 			$1
 		))
