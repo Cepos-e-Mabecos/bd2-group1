@@ -22,16 +22,6 @@
 		designation TEXT NOT NULL	
 	);
 
--- TABLE zones
-	CREATE TABLE zones(
-		zone_cod VARCHAR() PRIMARY KEY NOT NULL,
-		restaurant_cod VARCHAR() NOT NULL REFERENCES Restaurants(restaurant_cod)
-			ON DELETE CASCADE,
-		employee_cod VARCHAR() NOT NULL REFERENCES Employees(employee_cod)
-			ON DELETE CASCADE,
-		designation TEXT NOT NULL,
-	);
-
 -- TABLE Employees
 	CREATE TABLE Employees(
 		employee_cod VARCHAR PRIMARY KEY NOT NULL,
@@ -39,30 +29,41 @@
 		last_name TEXT NOT NULL
 	);
 
--- TABLE Items_Type
-	CREATE TABLE Items_Type(
+-- TABLE zones
+	CREATE TABLE zones(
+		zone_cod VARCHAR PRIMARY KEY NOT NULL,
+		restaurant_cod VARCHAR NOT NULL REFERENCES Restaurants(restaurant_cod)
+			ON DELETE CASCADE,
+		employee_cod VARCHAR NOT NULL REFERENCES Employees(employee_cod)
+			ON DELETE CASCADE,
+		designation TEXT NOT NULL
+	);
+
+-- TABLE Item_Types
+	CREATE TABLE Item_Types(
 		item_type_cod BIGSERIAL PRIMARY KEY NOT NULL,
 		designation TEXT NOT NULL
 	);
 
 -- TABLE Items
 	CREATE TABLE Items(
-		item_cod VARCHAR() PRIMARY KEY NOT NULL,
-		item_type_cod BIGSERIAL NOT NULL REFERENCES Items_Type(item_type_cod)
+		item_cod VARCHAR PRIMARY KEY NOT NULL,
+		item_type_cod BIGSERIAL NOT NULL REFERENCES Item_Types(item_type_cod)
 			ON DELETE CASCADE,
+		designation TEXT NOT NULL,
 		price MONEY NOT NULL
 	);
 
--- TABLE Menus_Type
-	CREATE TABLE Menus_Type(
+-- TABLE Menu_Types
+	CREATE TABLE Menu_Types(
 		menu_type_cod BIGSERIAL PRIMARY KEY NOT NULL,
 		designation TEXT NOT NULL
 	);
 
 -- TABLE Menus
 	CREATE TABLE Menus(
-		menu_cod VARCHAR() PRIMARY KEY NOT NULL,
-		menu_type_cod BIGSERIAL NOT NULL REFERENCES Menus_Type(menu_type_cod)
+		menu_cod VARCHAR PRIMARY KEY NOT NULL,
+		menu_type_cod BIGSERIAL NOT NULL REFERENCES Menu_Types(menu_type_cod)
 			ON DELETE CASCADE,
 		designation TEXT NOT NULL
 	);
@@ -72,14 +73,6 @@
 		menu_cod VARCHAR() NOT NULL REFERENCES Menus(menu_cod)
 			ON DELETE CASCADE,
 		item_cod VARCHAR() NOT NULL REFERENCES Items(item_cod)
-			ON DELETE CASCADE
-	);
-
--- TABLE Zone_Menus
-	CREATE TABLE Zone_Menus(
-		zone_cod VARCHAR() NOT NULL REFERENCES zones(zone_cod)
-			ON DELETE CASCADE,
-		menu_cod VARCHAR() NOT NULL REFERENCES Menus(menu_cod)
 			ON DELETE CASCADE
 	);
 
