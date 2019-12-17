@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Item(temp_cod_item VARCHAR, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Item(temp_cod_item BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN
@@ -20,3 +20,4 @@ BEGIN
         RAISE 'There is no Item with that Cod!';
     END IF;
 END
+$$

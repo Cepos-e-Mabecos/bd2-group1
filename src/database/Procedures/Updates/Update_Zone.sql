@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Zone(temp_cod_zone VARCHAR, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Zone(temp_cod_zone BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN

@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Menu(temp_cod_menu VARCHAR, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Menu(temp_cod_menu BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN

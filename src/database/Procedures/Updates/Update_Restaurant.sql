@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Restaurant(temp_cod_restaurant VARCHAR, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Restaurant(temp_cod_restaurant BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN

@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Menu(temp_cod_menu VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Menu(temp_cod_menu BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

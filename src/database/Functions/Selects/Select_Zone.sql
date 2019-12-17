@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION Select_Zone(temp_cod_zone VARCHAR)
+CREATE OR REPLACE FUNCTION Select_Zone(temp_cod_zone BIGINT)
 RETURNS JSON
 LANGUAGE plpgsql
 AS $$

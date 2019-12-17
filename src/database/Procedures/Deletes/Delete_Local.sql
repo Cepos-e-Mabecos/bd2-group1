@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Local(temp_cod_Local VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Local(temp_cod_Local BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

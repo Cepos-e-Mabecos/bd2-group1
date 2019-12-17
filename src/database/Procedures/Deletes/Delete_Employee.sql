@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Employee(temp_cod_employee VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Employee(temp_cod_employee BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION Select_Restaurant(temp_cod_restaurant VARCHAR)
+CREATE OR REPLACE FUNCTION Select_Restaurant(temp_cod_restaurant BIGINT)
 RETURNS json
 LANGUAGE plpgsql
 AS $$
