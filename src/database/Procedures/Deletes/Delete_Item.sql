@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Item(temp_cod_item VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Item(temp_cod_item BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Employee(temp_cod_employee VARCHAR, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Employee(temp_cod_employee BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN

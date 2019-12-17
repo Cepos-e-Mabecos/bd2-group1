@@ -9,6 +9,8 @@ from zones import zone
 from item_types import item_type
 from items import item
 from menu_types import menu_type
+from menus import menu
+from menu_items import menu_item
 
 # Init App
 app = Flask(__name__)
@@ -22,6 +24,8 @@ app.register_blueprint(zone, url_prefix="/zone")
 app.register_blueprint(item_type, url_prefix="/item-type")
 app.register_blueprint(item, url_prefix="/item")
 app.register_blueprint(menu_type, url_prefix="/menu-type")
+app.register_blueprint(menu, url_prefix="/menu")
+app.register_blueprint(menu_item, url_prefix="/menu-item")
 
 
 # @app.route('/restaurant', methods=['GET'])

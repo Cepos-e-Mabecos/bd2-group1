@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION Select_Employee(temp_cod_employee VARCHAR)
+CREATE OR REPLACE FUNCTION Select_Employee(temp_cod_employee BIGINT)
 RETURNS JSON
 LANGUAGE plpgsql
 AS $$

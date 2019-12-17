@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Local(temp_cod_local VARCHAR, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Local(temp_cod_local BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN

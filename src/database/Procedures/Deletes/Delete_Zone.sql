@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Zone(temp_cod_zone VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Zone(temp_cod_zone BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

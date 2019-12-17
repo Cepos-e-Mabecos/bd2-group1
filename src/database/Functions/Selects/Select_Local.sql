@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION Select_Local(temp_cod_local VARCHAR)
+CREATE OR REPLACE FUNCTION Select_Local(temp_cod_local BIGINT)
 RETURNS JSON
 LANGUAGE plpgsql
 AS $$

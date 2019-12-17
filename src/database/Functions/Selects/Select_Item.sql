@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION Select_Item(temp_cod_item VARCHAR)
+CREATE OR REPLACE FUNCTION Select_Item(temp_cod_item BIGINT)
 RETURNS JSON
 LANGUAGE plpgsql
 AS $$

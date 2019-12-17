@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Restaurant(temp_cod_restaurant VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Restaurant(temp_cod_restaurant BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

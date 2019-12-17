@@ -10,16 +10,16 @@ from config import create_connection, commit_destroy_connection, psycopg2
 from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
 
 # Define Blueprint
-restaurant = Blueprint('restaurant', __name__)
+menu_item = Blueprint('menu_item', __name__)
 
 definers = [
-    path.basename(__file__)[0:11],
-    path.basename(__file__)[0:10]
+    path.basename(__file__)[0:10],
+    path.basename(__file__)[0:9]
 ]
 
-# Get restaurants
-@restaurant.route('/', methods=['GET'])
-def get_restaurants():
+# Get menu_items
+@menu_item.route('/', methods=['GET'])
+def get_menu_items():
     # Declaration of a List of Records
     list_records = []
 
@@ -42,9 +42,9 @@ def get_restaurants():
         # Will store everysingle record in a list formated with a certain format
         for record in database_records:
             dictionary_row = {
-                "Restaurant_Cod": record[0],
-                "Restaurant_Local": record[1],
-                "Restaurant_Designation": record[2]
+                "Menu_item_Cod": record[0],
+                "Menu_item_Type_Cod": record[1],
+                "Menu_item_Designation": record[2]
             }
             list_records.append(dictionary_row)
 
@@ -70,9 +70,9 @@ def get_restaurants():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Get restaurant
-@restaurant.route('/<cod_restaurant>', methods=['GET'])
-def get_restaurant(cod_restaurant):
+# Get menu_item
+@menu_item.route('/<cod_menu>/<cod_item>', methods=['GET'])
+def get_menu_item(cod_menu, cod_item):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -80,12 +80,14 @@ def get_restaurant(cod_restaurant):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{GET_SINGLE(definers[1],cod_restaurant)}")
+            f"select select_{definers[1]}('{cod_menu}','{cod_item}')")
 
         cur.execute(encoded_command)
 
         # Fetching all the records from the cursor
         database_record = cur.fetchall()
+
+        print(database_record)
 
         # Returning the records complete list
         return {
@@ -110,9 +112,9 @@ def get_restaurant(cod_restaurant):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Post restaurant
-@restaurant.route('/', methods=['POST'])
-def post_restaurant():
+# Post menu_item
+@menu_item.route('/', methods=['POST'])
+def post_menu_item():
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -134,8 +136,7 @@ def post_restaurant():
         cur.execute(encoded_command)
 
         return jsonify({
-            "Message": (f"{definers[1]} created with success!"),
-            "Data": data_json
+            "Message": (f"{definers[1]} created with success!")
         }), 201
 
     except (Exception, psycopg2.Error) as error:
@@ -155,9 +156,9 @@ def post_restaurant():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Put restaurant
-@restaurant.route('/<cod_restaurant>', methods=['PUT'])
-def put_restaurant(cod_restaurant):
+# Put menu_item
+@menu_item.route('/<cod_menu>/<cod_item>', methods=['PUT'])
+def put_menu_item(cod_menu, cod_item):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -171,7 +172,7 @@ def put_restaurant(cod_restaurant):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{UPDATE(definers[1], cod_restaurant, data_json)}")
+            f"call update_{definers[1]}('{cod_menu}','{cod_item}','{data_json}'")
 
         print(encoded_command)
 
@@ -199,9 +200,9 @@ def put_restaurant(cod_restaurant):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Delete restaurant
-@restaurant.route('/<cod_restaurant>', methods=['DELETE'])
-def delete_restaurant(cod_restaurant):
+# Delete menu_item
+@menu_item.route('/<cod_menu>/<cod_item>', methods=['DELETE'])
+def delete_menu_item(cod_menu, cod_item):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -209,7 +210,7 @@ def delete_restaurant(cod_restaurant):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{DELETE(definers[1],cod_restaurant)}")
+            f"call delete_{definers[1]}('{cod_menu}', '{cod_item}')")
 
         cur.execute(encoded_command)
 
