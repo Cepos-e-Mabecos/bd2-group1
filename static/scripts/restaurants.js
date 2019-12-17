@@ -8,6 +8,28 @@ document.querySelector("#add-comsumption").addEventListener('click', () => {
     }
     count++;
 });
+const apiRequest = () => {
+    const postRestaurants = async () => {
+        const response = await fetch("http://example.com/api/endpoint/", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            //make sure to serialize your JSON body
+            body: JSON.stringify({
+                designation: document.querySelector('name-input').value,
+                local_cod: document.querySelector('local-input').value
+            })
+        })
+            .then((response) => {
+                //do something awesome that makes the world a better place
+            });
+    };
+    return {
+        postRestaurants: postRestaurants
+    }
+}
 
 
 // const apiRequest = () => {
