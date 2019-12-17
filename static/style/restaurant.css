@@ -24,3 +24,16 @@
     text-align: center;
     margin-top: 1.5em;
 }
+#add-comsumption{
+    width: 25px !important;
+    height: 25px !important;
+    outline: unset;
+    border: unset;
+    text-align: center;
+    color:white;
+    margin-top: 1em;
+    cursor: pointer;
+}
+.comsuption-input{
+    margin-bottom: 1.5em;
+}
