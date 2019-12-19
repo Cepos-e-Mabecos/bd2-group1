@@ -1,13 +1,12 @@
-CREATE OR REPLACE PROCEDURE Delete_Local(temp_cod_Local BIGINT)
+CREATE OR REPLACE PROCEDURE Delete_Local(arg_local_cod BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-	
-	IF(select exists(select 1 From Locals where Locals.Local_cod = temp_cod_Local)) THEN
+	IF(select exists(select 1 From Locals where Locals.Local_cod = arg_local_cod)) THEN
 		DELETE FROM Locals
-			WHERE Locals.Local_cod = temp_cod_Local;
+			WHERE Locals.Local_cod = arg_local_cod;
 	ELSE
-		RAISE 'There is no Local with that Cod!';
+		RAISE 'There is no Local with the given Cod!';
 	END IF;
 END
 $$

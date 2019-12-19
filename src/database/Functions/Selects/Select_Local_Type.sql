@@ -1,17 +1,17 @@
-CREATE OR REPLACE FUNCTION Select_Local_Type(temp_cod_local_type BIGINT)
+CREATE OR REPLACE FUNCTION Select_Local_Type(arg_local_type_cod BIGINT)
 RETURNS JSON
 LANGUAGE plpgsql
 AS $$
 BEGIN
 	
-	IF(select exists(select 1 From Local_Types where Local_Types.local_type_cod = temp_cod_local_type)) THEN
+	IF(select exists(select 1 From Local_Types where Local_Types.local_type_cod = arg_local_type_cod)) THEN
 		RETURN (Select json_build_object(
-					'Local_Type_Cod',Local_Types.local_type_cod, 
-					'Local_Type_Designation',Local_Types.designation)
+					'Local_Type_Cod:',Local_Types.local_type_cod, 
+					'Designation:',Local_Types.designation)
 						FROM Local_Types
-                            WHERE Local_Types.local_type_cod = temp_cod_local_type);
+                            WHERE Local_Types.local_type_cod = arg_local_type_cod);
 	ELSE
-		RAISE 'There is no Local_Type with that Cod!';
+		RAISE 'There is no Local_Type with the given Cod!';
 	END IF;
 END
 $$

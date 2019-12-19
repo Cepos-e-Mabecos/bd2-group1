@@ -34,8 +34,6 @@
 		zone_cod BIGSERIAL PRIMARY KEY NOT NULL,
 		restaurant_cod BIGSERIAL NOT NULL REFERENCES Restaurants(restaurant_cod)
 			ON DELETE CASCADE,
-		employee_cod BIGSERIAL NOT NULL REFERENCES Employees(employee_cod)
-			ON DELETE CASCADE,
 		designation TEXT NOT NULL
 	);
 
@@ -82,7 +80,8 @@
 		zone_cod BIGSERIAL NOT NULL REFERENCES Zones(zone_cod)
 			ON DELETE CASCADE,
 		employee_cod BIGSERIAL NOT NULL REFERENCES Employees(employee_cod)
-			ON DELETE CASCADE
+			ON DELETE CASCADE,
+		work_hour TIMESTAMP
 	);
 
 -- TABLE Clients
@@ -99,7 +98,15 @@
 			ON DELETE CASCADE,
 		comsumption_date TIMESTAMP NOT NULL
 	);
-
+	
+-- TABLE Comsumption_Items
+	CREATE TABLE Comsumption_Items(
+		comsumption_cod BIGSERIAL NOT NULL REFERENCES Comsumptions(comsumption_cod)
+			ON DELETE CASCADE,
+		item_cod BIGSERIAL NOT NULL REFERENCES Items(item_cod)
+			ON DELETE CASCADE
+	)
+	
 -- TABLE zone_Comsumptions
 	CREATE TABLE Zone_Comsumptions(
 		zone_cod BIGSERIAL NOT NULL REFERENCES Zones(zone_cod)

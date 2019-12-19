@@ -19,7 +19,7 @@ definers = [
 
 # Get menu_items
 @menu_item.route('/', methods=['GET'])
-def get_menu_items():
+def get_menus_items():
     # Declaration of a List of Records
     list_records = []
 
@@ -43,8 +43,8 @@ def get_menu_items():
         for record in database_records:
             dictionary_row = {
                 "Menu_item_Cod": record[0],
-                "Menu_item_Type_Cod": record[1],
-                "Menu_item_Designation": record[2]
+                "Menu_item_Nif": record[1],
+                "Menu_item_Date": record[2]
             }
             list_records.append(dictionary_row)
 
@@ -70,9 +70,9 @@ def get_menu_items():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Get menu_item
-@menu_item.route('/<cod_menu>/<cod_item>', methods=['GET'])
-def get_menu_item(cod_menu, cod_item):
+# Get menu_items
+@menu_item.route('/<cod_menu>', methods=['GET'])
+def get_menu_items(cod_menu):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -80,7 +80,53 @@ def get_menu_item(cod_menu, cod_item):
 
         # Creating the SQL Command
         encoded_command = (
-            f"select select_{definers[1]}('{cod_menu}','{cod_item}')")
+            f"{GET_SINGLE(definers[1],cod_menu)}")
+
+        print(encoded_command)
+
+        cur.execute(encoded_command)
+
+        # Fetching all the records from the cursor
+        database_record = cur.fetchall()
+
+        print(database_record)
+
+        # Returning the records complete list
+        return {
+            "Message": (f"{definers[1]} returned with success!"),
+            "Record": database_record
+        }, 200
+
+    except (Exception, psycopg2.Error) as error:
+
+        # Convert error to string, break the string on "!"
+        error = str(error)
+        error = error.split("\n")
+
+        return jsonify({
+            "Message": {
+                "Message": (f"There was an error getting the {definers[1]}!"),
+                "Error": error[0]
+            }
+        }), 500
+    finally:
+        # commiting and closing database connection.
+        if(connection):
+            commit_destroy_connection(connection, cur)
+
+# Get menus_item
+@menu_item.route('/<cod_item>', methods=['GET'])
+def get_menus_item(cod_item):
+    try:
+        # Establish the connection and creation of the cursor
+        connection = create_connection()
+        cur = connection.cursor()
+
+        # Creating the SQL Command
+        encoded_command = (
+            f"{GET_SINGLE(definers[1],cod_item)}")
+
+        print(encoded_command)
 
         cur.execute(encoded_command)
 
@@ -157,8 +203,8 @@ def post_menu_item():
             commit_destroy_connection(connection, cur)
 
 # Put menu_item
-@menu_item.route('/<cod_menu>/<cod_item>', methods=['PUT'])
-def put_menu_item(cod_menu, cod_item):
+@menu_item.route('/<cod_menu>', methods=['PUT'])
+def put_menu_item(cod_menu):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -172,7 +218,7 @@ def put_menu_item(cod_menu, cod_item):
 
         # Creating the SQL Command
         encoded_command = (
-            f"call update_{definers[1]}('{cod_menu}','{cod_item}','{data_json}'")
+            f"{UPDATE(definers[1], cod_menu, data_json)}")
 
         print(encoded_command)
 
@@ -201,8 +247,8 @@ def put_menu_item(cod_menu, cod_item):
             commit_destroy_connection(connection, cur)
 
 # Delete menu_item
-@menu_item.route('/<cod_menu>/<cod_item>', methods=['DELETE'])
-def delete_menu_item(cod_menu, cod_item):
+@menu_item.route('/<cod_menu>', methods=['DELETE'])
+def delete_menu_item(cod_menu):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -210,7 +256,7 @@ def delete_menu_item(cod_menu, cod_item):
 
         # Creating the SQL Command
         encoded_command = (
-            f"call delete_{definers[1]}('{cod_menu}', '{cod_item}')")
+            f"{DELETE(definers[1],cod_menu)}")
 
         cur.execute(encoded_command)
 

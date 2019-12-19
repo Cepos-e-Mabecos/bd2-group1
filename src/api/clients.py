@@ -10,16 +10,16 @@ from config import create_connection, commit_destroy_connection, psycopg2
 from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
 
 # Define Blueprint
-zone = Blueprint('zone', __name__)
+client = Blueprint('client', __name__)
 
 definers = [
-    path.basename(__file__)[0:5],
-    path.basename(__file__)[0:4]
+    path.basename(__file__)[0:7],
+    path.basename(__file__)[0:6]
 ]
 
-# Get zones
-@zone.route('/', methods=['GET'])
-def get_zones():
+# Get clients
+@client.route('/', methods=['GET'])
+def get_clients():
     # Declaration of a List of Records
     list_records = []
 
@@ -42,9 +42,8 @@ def get_zones():
         # Will store everysingle record in a list formated with a certain format
         for record in database_records:
             dictionary_row = {
-                "Zone_Cod": record[0],
-                "Zone_Restaurant": record[1],
-                "Zone_Designation": record[3]
+                "Client_Nif": record[0],
+                "Client_Full_Name": record[1]
             }
             list_records.append(dictionary_row)
 
@@ -70,9 +69,9 @@ def get_zones():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Get zone
-@zone.route('/<cod_zone>', methods=['GET'])
-def get_zone(cod_zone):
+# Get client
+@client.route('/<cod_client>', methods=['GET'])
+def get_client(cod_client):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -80,12 +79,14 @@ def get_zone(cod_zone):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{GET_SINGLE(definers[1],cod_zone)}")
+            f"{GET_SINGLE(definers[1],cod_client)}")
 
         cur.execute(encoded_command)
 
         # Fetching all the records from the cursor
         database_record = cur.fetchall()
+
+        print(database_record)
 
         # Returning the records complete list
         return {
@@ -110,9 +111,9 @@ def get_zone(cod_zone):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Post zone
-@zone.route('/', methods=['POST'])
-def post_zone():
+# Post client
+@client.route('/', methods=['POST'])
+def post_client():
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -154,9 +155,9 @@ def post_zone():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Put zone
-@zone.route('/<cod_zone>', methods=['PUT'])
-def put_zone(cod_zone):
+# Put client
+@client.route('/<cod_client>', methods=['PUT'])
+def put_client(cod_client):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -170,7 +171,7 @@ def put_zone(cod_zone):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{UPDATE(definers[1], cod_zone, data_json)}")
+            f"{UPDATE(definers[1], cod_client, data_json)}")
 
         print(encoded_command)
 
@@ -198,9 +199,9 @@ def put_zone(cod_zone):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Delete zone
-@zone.route('/<cod_zone>', methods=['DELETE'])
-def delete_zone(cod_zone):
+# Delete client
+@client.route('/<cod_client>', methods=['DELETE'])
+def delete_client(cod_client):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -208,7 +209,7 @@ def delete_zone(cod_zone):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{DELETE(definers[1],cod_zone)}")
+            f"{DELETE(definers[1],cod_client)}")
 
         cur.execute(encoded_command)
 
