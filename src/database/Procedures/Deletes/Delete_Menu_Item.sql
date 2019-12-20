@@ -14,7 +14,7 @@ BEGIN
             AND
                 menu_items.menu_cod = arg_menu_cod;
 	ELSE
-		RAISE 'There is no Menu_Item with the given Cod!';
+		RAISE 'There is no Menu_Item with the given Menu and Item Cod!';
 	END IF;
 END
 $$

@@ -13,6 +13,7 @@ from menus import menu
 from clients import client
 from comsumptions import comsumption
 from allergies import allergy
+from Menu_Items import menu_item
 
 # Init App
 app = Flask(__name__)
@@ -30,7 +31,7 @@ app.register_blueprint(menu, url_prefix="/menu")
 app.register_blueprint(client, url_prefix="/client")
 app.register_blueprint(comsumption, url_prefix="/comsumption")
 app.register_blueprint(allergy, url_prefix="/allergy")
-
+app.register_blueprint(menu_item, url_prefix="/menu-item")
 
 # @app.route('/restaurant', methods=['GET'])
 # def api_restaurant():

@@ -10,16 +10,16 @@ from config import create_connection, commit_destroy_connection, psycopg2
 from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
 
 # Define Blueprint
-menu_item = Blueprint('menu_item', __name__)
+comsumption_item = Blueprint('comsumption_item', __name__)
 
 definers = [
-    path.basename(__file__)[0:10],
-    path.basename(__file__)[0:9]
+    path.basename(__file__)[0:14],
+    path.basename(__file__)[0:13]
 ]
 
-# Get menu_items
-@menu_item.route('/', methods=['GET'])
-def get_menus_items():
+# Get comsumption_items
+@comsumption_item.route('/', methods=['GET'])
+def get_comsumptions_items():
     # Declaration of a List of Records
     list_records = []
 
@@ -42,8 +42,8 @@ def get_menus_items():
         # Will store everysingle record in a list formated with a certain format
         for record in database_records:
             dictionary_row = {
-                "Menu_Cod": record[0],
-                "Menu_item": record[1]
+                "Comsumption_Cod": record[0],
+                "Comsumption_item": record[1]
             }
             list_records.append(dictionary_row)
 
@@ -69,9 +69,9 @@ def get_menus_items():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Get menu_items
-@menu_item.route('/<cod_menu>', methods=['GET'])
-def get_menu_items(cod_menu):
+# Get comsumption_items
+@comsumption_item.route('/<cod_comsumption>', methods=['GET'])
+def get_comsumption_items(cod_comsumption):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -79,7 +79,7 @@ def get_menu_items(cod_menu):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{GET_SINGLE(definers[1],cod_menu)}")
+            f"{GET_SINGLE(definers[1],cod_comsumption)}")
 
         print(encoded_command)
 
@@ -120,7 +120,7 @@ def get_menu_items(cod_menu):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{GET_SINGLE(definers[1],cod_item)}")
+            f"{GET_SINGLE(definers[1],cod_comsumption)}")
 
         print(encoded_command)
 
@@ -154,9 +154,9 @@ def get_menu_items(cod_menu):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Post menu_item
-@menu_item.route('/', methods=['POST'])
-def post_menu_item():
+# Post comsumption_item
+@comsumption_item.route('/', methods=['POST'])
+def post_comsumption_item():
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -198,9 +198,9 @@ def post_menu_item():
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Put menu_item
-@menu_item.route('/<cod_menu>', methods=['PUT'])
-def put_menu_item(cod_menu):
+# Put comsumption_item
+@comsumption_item.route('/<cod_comsumption>', methods=['PUT'])
+def put_comsumption_item(cod_comsumption):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -214,7 +214,7 @@ def put_menu_item(cod_menu):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{UPDATE(definers[1], cod_menu, data_json)}")
+            f"{UPDATE(definers[1], cod_comsumption, data_json)}")
 
         print(encoded_command)
 
@@ -242,9 +242,9 @@ def put_menu_item(cod_menu):
         if(connection):
             commit_destroy_connection(connection, cur)
 
-# Delete menu_item
-@menu_item.route('/<cod_menu>', methods=['DELETE'])
-def delete_menu_item(cod_menu):
+# Delete comsumption_item
+@comsumption_item.route('/<cod_comsumption>', methods=['DELETE'])
+def delete_comsumption_item(cod_comsumption):
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -252,7 +252,7 @@ def delete_menu_item(cod_menu):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{DELETE(definers[1],cod_menu)}")
+            f"{DELETE(definers[1],cod_comsumption)}")
 
         cur.execute(encoded_command)
 
