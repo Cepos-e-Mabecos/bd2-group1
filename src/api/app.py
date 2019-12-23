@@ -10,7 +10,10 @@ from item_types import item_type
 from items import item
 from menu_types import menu_type
 from menus import menu
-from menu_items import menu_item
+from clients import client
+from comsumptions import comsumption
+from allergies import allergy
+from Menu_Items import menu_item
 
 # Init App
 app = flask.Flask(__name__)
@@ -25,7 +28,11 @@ app.register_blueprint(item_type, url_prefix="/item-type")
 app.register_blueprint(item, url_prefix="/item")
 app.register_blueprint(menu_type, url_prefix="/menu-type")
 app.register_blueprint(menu, url_prefix="/menu")
+app.register_blueprint(client, url_prefix="/client")
+app.register_blueprint(comsumption, url_prefix="/comsumption")
+app.register_blueprint(allergy, url_prefix="/allergy")
 app.register_blueprint(menu_item, url_prefix="/menu-item")
+
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 

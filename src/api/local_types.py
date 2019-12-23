@@ -42,8 +42,8 @@ def get_local_types():
         # Will store everysingle record in a list formated with a certain format
         for record in database_records:
             dictionary_row = {
-                "local_type_Cod": record[0],
-                "designation": record[1]
+                "Local_Type_Cod": record[0],
+                "Designation": record[1]
             }
             list_records.append(dictionary_row)
 

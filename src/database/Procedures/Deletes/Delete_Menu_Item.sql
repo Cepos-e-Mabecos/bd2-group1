@@ -1,20 +1,20 @@
-CREATE OR REPLACE PROCEDURE Delete_Menu_Item(temp_menu_cod BIGINT, temp_item_cod BIGINT)
+CREATE OR REPLACE PROCEDURE Delete_Menu_Item(arg_menu_cod BIGINT, arg_item_cod BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-	
-	IF(select exists(select 1 From Menu_Items where 
-            Menu_Items.menu_cod = temp_menu_cod
-        AND
-            Menu_Items.item_cod = temp_item_cod)) 
-        THEN
-		DELETE FROM Menu_Items
+	IF(select exists(
+            select 1 From menu_items 
+                where 
+                    menu_items.menu_cod = arg_menu_cod
+                AND
+                    menu_items.item_cod = arg_item_cod)) THEN
+		DELETE FROM menu_items
 			WHERE 
-                Menu_Items.menu_cod = temp_menu_cod
+                menu_items.item_cod = arg_item_cod
             AND
-                Menu_Items.item_cod = temp_item_cod;
+                menu_items.menu_cod = arg_menu_cod;
 	ELSE
-		RAISE 'There is no Menu_Item with that Menu and Item Cod!';
+		RAISE 'There is no Menu_Item with the given Menu and Item Cod!';
 	END IF;
 END
 $$

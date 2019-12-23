@@ -44,7 +44,6 @@ def get_zones():
             dictionary_row = {
                 "Zone_Cod": record[0],
                 "Zone_Restaurant": record[1],
-                "Zone_Employee": record[2],
                 "Zone_Designation": record[3]
             }
             list_records.append(dictionary_row)
