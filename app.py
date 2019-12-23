@@ -13,6 +13,11 @@ def hello_world():
 @app.route('/restaurant')
 def restaurant():
     return render_template("restaurant.html")
+
+
+@app.route('/readRestaurant')
+def readRestaurant():
+    return render_template("readRestaurant.html")
     
 # Run Server
 if __name__ == '__main__':

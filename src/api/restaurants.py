@@ -117,10 +117,9 @@ def post_restaurant():
         # Establish the connection and creation of the cursor
         connection = create_connection()
         cur = connection.cursor()
-
         # Get the Data as Json
         data_json = request.get_json()
-
+        print(data_json)
         # Encode to "" instead of '
         data_json = str(data_json).replace("'", '"')
 

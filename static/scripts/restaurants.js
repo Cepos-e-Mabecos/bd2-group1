@@ -8,26 +8,26 @@ document.querySelector("#add-comsumption").addEventListener('click', () => {
     }
     count++;
 });
+/*When submit button is pressed the fetch function will be triggered */
+document.querySelector('#submit-button').addEventListener('click', (event) => {
+    event.preventDefault();
+    fetch("http://localhost:5001/restaurant/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            designation: document.querySelector('#name-input').value,
+            local_cod: document.querySelector('#local-input').value
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .then(
+            bubadeira
+        )
+        .catch((err) => console.log(err))
+    location.reload;
+});
 
 
-// const apiRequest = () => {
-//     const getRestaurants = async () => {
-//         const response = await fetch('http://localhost:5001/restaurant');
-//         const data = await response.json();
-//         let innerHTML = ' ';
-
-//         data.forEach((element) => {
-//             innerHTML += `<div class="card">
-//                             ${element.name}
-//                             ${element.location}
-//                         </div>`;
-//         });
-//         /* pass the data from the file to the UI */
-//         document.querySelector('.teste-container').innerHTML = innerHTML;
-//     };
-//     return {
-//         getRestaurants: getRestaurants
-//     }
-// }
-
-// document.querySelector('body').addEventListener('click',apiRequest().getRestaurants);
