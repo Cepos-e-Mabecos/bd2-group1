@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+import flask
 from flask_cors import CORS
 
 from restaurants import restaurant
@@ -13,8 +13,8 @@ from menus import menu
 from menu_items import menu_item
 
 # Init App
-app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+app = flask.Flask(__name__)
+
 # Register Blueprints
 app.register_blueprint(restaurant, url_prefix="/restaurant")
 app.register_blueprint(local, url_prefix="/local")
@@ -27,11 +27,7 @@ app.register_blueprint(menu_type, url_prefix="/menu-type")
 app.register_blueprint(menu, url_prefix="/menu")
 app.register_blueprint(menu_item, url_prefix="/menu-item")
 
-
-# @app.route('/restaurant', methods=['GET'])
-# def api_restaurant():
-# return jsonify([{'name':'Restaurante da Tua Tia', 'location':'Em casa'},{'name':'Restaurante da Teu Tio', 'location':'Na Rua'}])
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Run Server
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+app.run(debug=True, port=5001)
