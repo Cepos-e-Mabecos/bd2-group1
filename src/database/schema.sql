@@ -107,14 +107,14 @@
 		item_cod BIGSERIAL NOT NULL REFERENCES Items(item_cod)
 			ON DELETE CASCADE,
 		PRIMARY KEY(comsumption_cod, item_cod)
-	)
+	);
 	
 -- TABLE zone_Comsumptions
 	CREATE TABLE Zone_Comsumptions(
 		zone_cod BIGSERIAL NOT NULL REFERENCES Zones(zone_cod)
 			ON DELETE CASCADE,
 		comsumption_cod BIGSERIAL NOT NULL REFERENCES Comsumptions(comsumption_cod)
-			ON DELETE CASCADE,,
+			ON DELETE CASCADE,
 		PRIMARY KEY(zone_cod, comsumption_cod)
 	);
 

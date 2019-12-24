@@ -23,9 +23,9 @@ document.querySelector('#submit-button').addEventListener('click', (event) => {
         })
         .then((res) => res.json())
         .then((data) => console.log(data))
-        .then(
+        /*.then(
             bubadeira
-        )
+        )*/
         .catch((err) => console.log(err))
     location.reload;
 });

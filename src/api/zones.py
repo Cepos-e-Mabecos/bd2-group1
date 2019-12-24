@@ -43,7 +43,8 @@ def get_zones():
         for record in database_records:
             dictionary_row = {
                 "Zone_Cod": record[0],
-                "Zone_Restaurant": record[1],
+                "Restaurant_Cod": record[1],
+                "Zone_Restaurant": record[2],
                 "Zone_Designation": record[3]
             }
             list_records.append(dictionary_row)
