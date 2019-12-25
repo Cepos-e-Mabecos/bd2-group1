@@ -7,7 +7,7 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 zone = Blueprint('zone', __name__)
@@ -121,13 +121,13 @@ def post_zone():
 
         # Get the Data as Json
         data_json = request.get_json()
-
+        print(data_json)
         # Encode to "" instead of '
         data_json = str(data_json).replace("'", '"')
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 
