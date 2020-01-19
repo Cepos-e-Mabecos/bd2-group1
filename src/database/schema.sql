@@ -133,3 +133,12 @@
 			ON DELETE CASCADE,
 		PRIMARY KEY(allergy_cod, item_cod)
 	);
+
+-- TABLE Menus_Dates
+	CREATE TABLE Menus_Dates(
+		menu_cod BIGSERIAL NOT NULL REFERENCES Menus(menu_cod)
+			ON DELETE CASCADE,
+		date_cod BIGSERIAL NOT NULL PRIMARY KEY,
+		designation TEXT NOT NULL,
+		date_day TIMESTAMP NOT NULL
+	)
