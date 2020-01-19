@@ -7,7 +7,7 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 restaurant = Blueprint('restaurant', __name__)
@@ -31,7 +31,6 @@ def get_restaurants():
         # Creating the SQL Command
         encoded_command = (
             f"{GET_ALL(definers[0])}")
-
         cur.execute(encoded_command)
 
         # Fetching all the records from the cursor
@@ -125,16 +124,17 @@ def post_restaurant():
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 
         # Executing the SQL Command
         cur.execute(encoded_command)
-
+        database_record = cur.fetchall()
         return jsonify({
             "Message": (f"{definers[1]} created with success!"),
-            "Data": data_json
+            "Data": data_json,
+            "Restaurant_Cod": database_record[0]
         }), 201
 
     except (Exception, psycopg2.Error) as error:
