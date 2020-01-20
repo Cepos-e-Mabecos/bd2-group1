@@ -67,30 +67,21 @@
         </div> <!-- navbar-collapse.// -->
     </nav>
     <div class="container">
-        <h1 class="title">Create Restaurant</h1>
-        <form>
-            <div class="form-group">
-                <label for="name-input">Name</label>
-                <input type="text" class="form-control" id="name-input" placeholder="Name of Restaurant">
-            </div>
-            <div class="form-group">
-                <label for="local-select">Local</label>
-                <select class="form-control" id="local-input">
-                   
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="name-input">Comsumptions Zones</label>
-                <div class="comsumption-zone">
-                    <input type="text" class="form-control comsuption-input">
-                </div>
-                <div class="bg-primary rounded-circle" id="add-comsumption">+</div>
-            </div>
-            <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
-        </form>
+        <h1 class="title">Delete Restaurant</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Restaurant</th>
+                    <th scope="col">Local</th>
+                    <th class="text-center" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
     </div>
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -103,7 +94,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/restaurants.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/deleteRestaurant.js') }}"></script>
 </body>
 
 </html>

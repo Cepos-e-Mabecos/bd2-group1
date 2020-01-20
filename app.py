@@ -18,7 +18,15 @@ def restaurant():
 @app.route('/readRestaurant')
 def readRestaurant():
     return render_template("readRestaurant.html")
-    
+
+@app.route('/updateRestaurant') 
+def updateRestaurant():
+    return render_template("updateRestaurant.html")
+
+@app.route('/deleteRestaurant')
+def deleteRestaurant():
+    return render_template("deleteRestaurant.html") 
+
 # Run Server
 if __name__ == '__main__':
     app.run(debug=True)

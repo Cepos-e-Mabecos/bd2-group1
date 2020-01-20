@@ -5,7 +5,6 @@ window.addEventListener("load", async () => {
     /*Transform the response to JSON */
     let data = await response.json();
     data = data["Records"];
-    console.log(data);
     let innerHTML = ' ';
     data.forEach((element) => {
         innerHTML += ` <option value="${element.Local_Cod}">${element.Local_Designation}</option>`;
@@ -28,6 +27,7 @@ document.querySelector('#submit-button').addEventListener('click', (event) => {
     event.preventDefault();
     let localsArray = new Array();
     let localsInput = document.querySelectorAll('.comsuption-input');
+    let j;
     for (let i = 0; i < localsInput.length; i++) {
         localsArray.push(localsInput[i].value);
     }
@@ -45,10 +45,7 @@ document.querySelector('#submit-button').addEventListener('click', (event) => {
         .then((res) => res.json())
         .then((data) => {
             restaurantID = data.Restaurant_Cod;
-            console.log(restaurantID[0]);
-        })
-        .then(() => {
-            for (let j = 0; j < localsArray.length; j++) {
+            for (j = 0; j < localsArray.length; j++) {
                 fetch("http://localhost:5001/zone/", {
                     method: 'POST',
                     headers: {
@@ -59,11 +56,15 @@ document.querySelector('#submit-button').addEventListener('click', (event) => {
                         designation: localsArray[j]
                     })
                 })
-                .then((res) => res.json())
+                .then((res) => res.json());
             }
         })
-        .then(() => window.location.href = "http://localhost:5000/readRestaurant")
-        .catch((err) => console.log(err));
+        .then(() => {
+            alert("Restaurante inserido com sucesso!");
+            window.location.href = "http://localhost:5000/readRestaurant";
+            
+        });
+        // .catch((err) => console.log(err));
 });
 
 

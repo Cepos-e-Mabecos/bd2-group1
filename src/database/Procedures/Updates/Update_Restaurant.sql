@@ -12,9 +12,9 @@ BEGIN
 		))
 
 		UPDATE Restaurants SET 
-			local_cod = json_data.local_cod,
+			local_cod = s.local_cod,
 			designation = s.designation
-		FROM source as json_data
+		FROM source as s
 		WHERE restaurant_cod = arg_restaurant_cod;
 	ELSE
 		RAISE 'There is no Restaurant with the given Cod!';
