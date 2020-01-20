@@ -13,6 +13,9 @@ from menus import menu
 from clients import client
 from comsumptions import comsumption
 from allergies import allergy
+
+from menu_date import menu_date
+
 from menu_items import menu_item
 
 # Init App
@@ -32,7 +35,7 @@ app.register_blueprint(client, url_prefix="/client")
 app.register_blueprint(comsumption, url_prefix="/comsumption")
 app.register_blueprint(allergy, url_prefix="/allergy")
 app.register_blueprint(menu_item, url_prefix="/menu-item")
-
+app.register_blueprint(menu_date, url_prefix="/menu-date")
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 

@@ -142,3 +142,11 @@
 		designation TEXT NOT NULL,
 		date_day TIMESTAMP NOT NULL
 	)
+
+-- TABLE Records
+	CREATE TABLE RECORDS(
+		record_cod BIGSERIAL NOT NULL PRIMARY KEY,
+		restaurant_cod BIGSERIAL NOT NULL REFERENCES Restaurants(restaurant_cod)
+			ON DELETE CASCADE,
+		total_comsumptions INT NOT NULL
+	)
