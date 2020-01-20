@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/restaurant.css') }}">
     <title>Restaurant API</title>
 </head>
 
@@ -64,7 +64,53 @@
         </ul>
         </div> <!-- navbar-collapse.// -->
       </nav>
-      <div class="container"><h1 class="title">Restaurant Web API</h1></div>
+    <div class="container">
+        <h1 class="title">Update Restaurant</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Restaurant</th>
+                    <th scope="col">Local</th>
+                    <th class="text-center" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Restaurant Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="idRestaurant">
+                    <div class="form-group">
+                        <label for="nameRestaurant">Name:</label>
+                        <input type="text" class="form-control" id="nameRestaurant">
+                    </div>
+                    <div class="form-group">
+                        <label for="local-select">Local</label>
+                        <select class="form-control" id="local-input">
+                           
+                        </select>
+                    </div>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submit-button">Update restaurant</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -79,6 +125,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/updateRestaurant.js') }}"></script>
 </body>
 
 </html>
