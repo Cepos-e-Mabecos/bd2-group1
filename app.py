@@ -27,6 +27,21 @@ def updateRestaurant():
 def deleteRestaurant():
     return render_template("deleteRestaurant.html") 
 
+@app.route('/createEmployee')
+def createRestaurant():
+    return render_template("createEmployee.html")
+
+@app.route('/readEmployee')
+def readEmployee():
+    return render_template("readEmployee.html")
+
+@app.route('/updateEmployee')
+def updateEmployee():
+    return render_template("updateEmployee.html")
+
+@app.route('/deleteEmployee')
+def deleteEmployee():
+    return render_template("deleteEmployee.html")
 # Run Server
 if __name__ == '__main__':
     app.run(debug=True)

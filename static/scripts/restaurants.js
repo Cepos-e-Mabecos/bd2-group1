@@ -64,7 +64,6 @@ document.querySelector('#submit-button').addEventListener('click', (event) => {
             window.location.href = "http://localhost:5000/readRestaurant";
             
         });
-        // .catch((err) => console.log(err));
 });
 
 

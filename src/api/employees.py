@@ -7,7 +7,7 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 employee = Blueprint('employee', __name__)
@@ -43,7 +43,8 @@ def get_employees():
         for record in database_records:
             dictionary_row = {
                 "Employee_Cod": record[0],
-                "Employee_Full_Name": record[1]
+                "Employee_FirstName": record[1],
+                "Employee_LastName": record[2]
             }
             list_records.append(dictionary_row)
 
@@ -125,7 +126,7 @@ def post_employee():
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 

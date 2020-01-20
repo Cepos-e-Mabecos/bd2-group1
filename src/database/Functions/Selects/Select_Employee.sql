@@ -7,7 +7,8 @@ BEGIN
 	IF(select exists(select 1 From Employees where Employees.employee_cod = arg_employee_cod)) THEN
 		RETURN (Select json_build_object(
 					'Employee_Cod', Employees.employee_cod, 
-					'Employee_Designation', Employees.first_name || ' ' || Employees.last_name)
+					'Employee_FirstName', Employees.first_name,
+					'Employee_LastName', Employees.last_name)
 						FROM Employees
                             WHERE Employees.employee_cod = arg_employee_cod);
 	ELSE
