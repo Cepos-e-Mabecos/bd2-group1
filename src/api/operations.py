@@ -15,7 +15,10 @@ def INSERT(definer, data_json):
     INSERT = (f"call insert_{definer}('{data_json}')")
     return INSERT
 
-
+def INSERT2(definer, data_json):
+    INSERT2 = (f"select * from insert_{definer}('{data_json}')")
+    return INSERT2
+    
 def UPDATE(definer, cod, data_json):
     if(isinstance(cod, int)):
         UPDATE = (f"call update_{definer}({cod},'{data_json}')")
