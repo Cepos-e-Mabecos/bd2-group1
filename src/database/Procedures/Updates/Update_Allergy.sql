@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Update_Allergy(arg_allergy_cod BIGINT, json_data JSON)
+CREATE OR REPLACE PROCEDURE Update_Allergie(arg_allergy_cod BIGINT, json_data JSON)
 LANGUAGE plpgsql
 AS $$
 BEGIN

@@ -7,7 +7,7 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 allergy = Blueprint('allergy', __name__)
@@ -82,6 +82,8 @@ def get_allergy(cod_allergy):
         encoded_command = (
             f"{GET_SINGLE(definers[1],cod_allergy)}")
 
+        print(encoded_command)
+
         cur.execute(encoded_command)
 
         # Fetching all the records from the cursor
@@ -126,7 +128,7 @@ def post_allergy():
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 
@@ -209,6 +211,8 @@ def delete_allergy(cod_allergy):
         # Creating the SQL Command
         encoded_command = (
             f"{DELETE(definers[1],cod_allergy)}")
+
+        print(encoded_command)
 
         cur.execute(encoded_command)
 

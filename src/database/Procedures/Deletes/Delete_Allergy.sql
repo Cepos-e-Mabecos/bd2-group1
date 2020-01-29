@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE Delete_Allergy(arg_allergy_cod VARCHAR)
+CREATE OR REPLACE PROCEDURE Delete_Allergie(arg_allergy_cod BIGINT)
 LANGUAGE plpgsql
 AS $$
 BEGIN

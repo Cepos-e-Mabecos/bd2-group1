@@ -3,7 +3,7 @@ import psycopg2
 
 
 def DB_NAME():
-    DB_NAME = "BD_FINAL"
+    DB_NAME = "postgres"
     return DB_NAME
 
 
@@ -23,7 +23,7 @@ def POSTGRES_USER():
 
 
 def POSTGRES_PASSWORD():
-    POSTGRES_PASSWORD = "1250"
+    POSTGRES_PASSWORD = "postgres"
     return POSTGRES_PASSWORD
 
 
