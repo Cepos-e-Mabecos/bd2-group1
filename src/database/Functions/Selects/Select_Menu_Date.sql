@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION Select_Menu_Date(temp_cod_menu_date VARCHAR)
+CREATE OR REPLACE FUNCTION Select_Menu_Date(temp_cod_menu_date BIGINT)
 RETURNS JSON
 LANGUAGE plpgsql
 AS $$
