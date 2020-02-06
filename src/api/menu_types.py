@@ -22,7 +22,7 @@ definers = [
 def get_menu_types():
     # Declaration of a List of Records
     list_records = []
-
+    print("Fella")
     try:
         # Establish the connection and creation of the cursor
         connection = create_connection()
@@ -42,7 +42,7 @@ def get_menu_types():
         # Will store everysingle record in a list formated with a certain format
         for record in database_records:
             dictionary_row = {
-                "menu_type_Cod": record[0],
+                "menu_type_cod": record[0],
                 "designation": record[1]
             }
             list_records.append(dictionary_row)

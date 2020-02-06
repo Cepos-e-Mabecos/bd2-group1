@@ -13,6 +13,7 @@ from menus import menu
 from clients import client
 from comsumptions import comsumption
 from allergies import allergy
+from xml import xml
 
 from menu_date import menu_date
 
@@ -29,13 +30,14 @@ app.register_blueprint(employee, url_prefix="/employee")
 app.register_blueprint(zone, url_prefix="/zone")
 app.register_blueprint(item_type, url_prefix="/item-type")
 app.register_blueprint(item, url_prefix="/item")
-app.register_blueprint(menu_type, url_prefix="/menu-type")
+app.register_blueprint(menu_type, url_prefix="/menu_type")
 app.register_blueprint(menu, url_prefix="/menu")
 app.register_blueprint(client, url_prefix="/client")
 app.register_blueprint(comsumption, url_prefix="/comsumption")
 app.register_blueprint(allergy, url_prefix="/allergy")
-app.register_blueprint(menu_item, url_prefix="/menu-item")
-app.register_blueprint(menu_date, url_prefix="/menu-date")
+app.register_blueprint(menu_item, url_prefix="/menu_item")
+app.register_blueprint(menu_date, url_prefix="/menu_date")
+app.register_blueprint(xml, url_prefix="/xml")
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 

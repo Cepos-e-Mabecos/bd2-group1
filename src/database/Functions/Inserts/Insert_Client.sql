@@ -6,7 +6,7 @@ BEGIN
 			SELECT nif,first_name,last_name FROM json_populate_record(
 				NULL::clients,
 				$1 
-		) returning client_cod into id;
+		) returning nif into id;
         RETURN id;
 END
 $id$ LANGUAGE plpgsql;
