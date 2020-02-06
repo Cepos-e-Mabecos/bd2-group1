@@ -10,6 +10,9 @@ def GET_SINGLE(definer, cod):
         GET_SINGLE = (f"select select_{definer}('{cod}')")
     return GET_SINGLE
 
+def GET_XML(definer):
+    GET_XML = (f"Select select_{definer}()")
+    return GET_XML
 
 def INSERT(definer, data_json):
     INSERT = (f"call insert_{definer}('{data_json}')")

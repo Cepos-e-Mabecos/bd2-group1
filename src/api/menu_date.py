@@ -7,14 +7,14 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 menu_date = Blueprint('menu_date', __name__)
 
 definers = [
     path.basename(__file__)[0:6],
-    path.basename(__file__)[0:5]
+    path.basename(__file__)[0:9]
 ]
 
 # Get menu_dates
@@ -117,6 +117,7 @@ def get_menu_date(cod_menu_date):
 @menu_date.route('/', methods=['POST'])
 def post_menu_date():
     try:
+        print(definers[1])
         # Establish the connection and creation of the cursor
         connection = create_connection()
         cur = connection.cursor()
@@ -129,7 +130,7 @@ def post_menu_date():
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 

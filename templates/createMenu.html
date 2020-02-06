@@ -48,6 +48,8 @@
                     <li><a class="dropdown-item" href="updateRestaurant">Restaurant</a></li>
                     <li><a class="dropdown-item" href="updateEmployee">Employees</a></li>
                     <li><a class="dropdown-item" href="updateClient">Clients</a></li>
+        
+
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -63,51 +65,28 @@
         </div> <!-- navbar-collapse.// -->
       </nav>
     <div class="container">
-        <h1 class="title">Update Restaurant</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Restaurant</th>
-                    <th scope="col">Local</th>
-                    <th class="text-center" scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Restaurant Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="idRestaurant">
-                    <div class="form-group">
-                        <label for="nameRestaurant">Name:</label>
-                        <input type="text" class="form-control" id="nameRestaurant">
-                    </div>
-                    <div class="form-group">
-                        <label for="local-select">Local</label>
-                        <select class="form-control" id="local-input">
-                           
-                        </select>
-                    </div>
-                   
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit-button">Update restaurant</button>
-                </div>
+        <h1 class="title">Create Menus</h1>
+        <form>
+            <div class="form-group">
+                <label for="name-input">Name</label>
+                <input type="text" class="form-control" id="name-input" placeholder="Name of Restaurant">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="local-select">Menu Type</label>
+                <select class="form-control" id="menuType-input">
+                   
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="local-select">Menu Items</label>
+                <div class="checkbox-container"></div>
+            </div>
+            <div class="form-group">
+                <label for="name-input">Date:</label>
+                <input type="date" class="form-control" id="date-input" >
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+        </form>
     </div>
 
 
@@ -123,7 +102,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/updateRestaurant.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/createMenu.js') }}"></script>
 </body>
 
 </html>

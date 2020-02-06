@@ -7,7 +7,8 @@ BEGIN
 	IF(select exists(select 1 From clients where clients.nif = temp_cod_client)) THEN
 		RETURN (Select json_build_object(
 					'Client_Nif', clients.nif,
-                    'Client_Full_Name', clients.first_name || ' ' || clients.last_name)
+                    'Client_FirstName', clients.first_name,
+					'Client_LastName',clients.last_name)
 						FROM clients 
                             WHERE clients.nif = temp_cod_client);
 	ELSE

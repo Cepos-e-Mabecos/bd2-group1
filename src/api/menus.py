@@ -7,7 +7,7 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 menu = Blueprint('menu', __name__)
@@ -43,8 +43,8 @@ def get_menus():
         for record in database_records:
             dictionary_row = {
                 "Menu_Cod": record[0],
-                "Menu_Type_Cod": record[1],
-                "Menu_Designation": record[2]
+                "Menu_Type_Cod": record[2],
+                "Menu_Designation": record[1]
             }
             list_records.append(dictionary_row)
 
@@ -128,15 +128,16 @@ def post_menu():
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 
         # Executing the SQL Command
         cur.execute(encoded_command)
-
+        database_record = cur.fetchall()
         return jsonify({
-            "Message": (f"{definers[1]} created with success!")
+            "Message": (f"{definers[1]} created with success!"),
+            "Menu_Cod": database_record[0]
         }), 201
 
     except (Exception, psycopg2.Error) as error:

@@ -61,3 +61,23 @@ async function getRestaurant(id){
     document.querySelector('#localGroup').innerHTML = innerHTML;
 }
  
+async function download() {
+   
+    const response = await fetch('http://localhost:5001/xml/');
+    let data = await response.json();
+    data = data["Records"][0][0];
+    data = data.replace(/\(/g,'');
+    data = data.replace(/\)/g,'');
+    data = data.replace(/"/g,'');
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', "restaurants.xml");
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+
+    document.body.removeChild(element);
+    console.log(data);
+  }

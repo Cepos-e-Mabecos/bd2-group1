@@ -43,7 +43,8 @@ def get_menus_items():
         for record in database_records:
             dictionary_row = {
                 "Menu_Cod": record[0],
-                "Menu_item": record[1]
+                "Menu_Designation": record[1],
+                "Item_Designation": record[2]
             }
             list_records.append(dictionary_row)
 
@@ -120,7 +121,7 @@ def get_menu_items(cod_menu):
 
         # Creating the SQL Command
         encoded_command = (
-            f"{GET_SINGLE(definers[1],cod_item)}")
+            f"{GET_SINGLE(definers[1],cod_menu)}")
 
         print(encoded_command)
 

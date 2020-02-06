@@ -7,7 +7,7 @@ from os import path
 from config import create_connection, commit_destroy_connection, psycopg2
 
 # Import select_operations
-from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE
+from operations import GET_ALL, GET_SINGLE, INSERT, UPDATE, DELETE, INSERT2
 
 # Define Blueprint
 comsumption = Blueprint('comsumption', __name__)
@@ -130,7 +130,7 @@ def post_comsumption():
 
         # Creating the SQL Command
         encoded_command = (
-            f"{INSERT(definers[1], data_json)}")
+            f"{INSERT2(definers[1], data_json)}")
 
         print(encoded_command)
 

@@ -48,6 +48,8 @@
                     <li><a class="dropdown-item" href="updateRestaurant">Restaurant</a></li>
                     <li><a class="dropdown-item" href="updateEmployee">Employees</a></li>
                     <li><a class="dropdown-item" href="updateClient">Clients</a></li>
+
+
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -63,13 +65,13 @@
         </div> <!-- navbar-collapse.// -->
       </nav>
     <div class="container">
-        <h1 class="title">Update Restaurant</h1>
+        <h1 class="title">Update Client</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Restaurant</th>
-                    <th scope="col">Local</th>
+                    <th scope="col">NIF</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
                     <th class="text-center" scope="col">Action</th>
                 </tr>
             </thead>
@@ -84,27 +86,24 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Restaurant Info</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Client Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="idRestaurant">
+                    <input type="hidden" id="nifClient">
                     <div class="form-group">
-                        <label for="nameRestaurant">Name:</label>
-                        <input type="text" class="form-control" id="nameRestaurant">
+                        <label for="nameRestaurant">First Name:</label>
+                        <input type="text" class="form-control" id="firstName">
                     </div>
                     <div class="form-group">
-                        <label for="local-select">Local</label>
-                        <select class="form-control" id="local-input">
-                           
-                        </select>
+                        <label for="nameRestaurant">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName">
                     </div>
-                   
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submit-button">Update restaurant</button>
+                    <button type="submit" class="btn btn-primary" id="submit-button">Update Client</button>
                 </div>
             </div>
         </div>
@@ -123,7 +122,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/updateRestaurant.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/updateClient.js') }}"></script>
 </body>
 
 </html>
